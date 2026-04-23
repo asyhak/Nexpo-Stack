@@ -1,0 +1,69 @@
+{
+  "name": "nexpo-stack",
+  "version": "1.0.0",
+  "description": "🚀 Next.js 16 + Expo 55 + gluestack-ui v4 Monorepo Starter. A premium, Shadcn-compatible foundation for building universal apps (Web, iOS, Android) with unified logic and Solito.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "check-types": "turbo check-types",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "validate": "pnpm lint && pnpm check-types",
+    "parity-check": "node scripts/check-parity.js",
+    "g": "node scripts/generate.js",
+    "skeleton:build": "pnpm --filter app skeleton:build",
+    "skeleton:build:native": "pnpm --filter app skeleton:build:native",
+    "clean": "rimraf node_modules **/node_modules"
+  },
+  "keywords": [
+    "nextjs",
+    "expo",
+    "react-native",
+    "solito",
+    "monorepo",
+    "gluestack-ui",
+    "nativewind",
+    "tailwind-css",
+    "typescript",
+    "turborepo",
+    "cross-platform",
+    "shadcn-ui",
+    "starter-kit",
+    "boilerplate",
+    "react",
+    "frontend",
+    "mobile-development",
+    "web-development",
+    "zod",
+    "zustand"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.8.3",
+    "turbo": "^2.9.6"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14",
+      "react": "catalog:",
+      "react-dom": "catalog:",
+      "react-native": "catalog:",
+      "react-native-web": "catalog:",
+      "react-native-safe-area-context": "catalog:",
+      "react-native-svg": "catalog:"
+    }
+  }
+}

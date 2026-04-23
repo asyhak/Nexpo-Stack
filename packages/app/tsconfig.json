@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "types": ["nativewind/types"],
+    "paths": {
+      "@repo/app/*": ["./*"],
+      "@repo/ui": ["../ui"],
+      "@repo/contracts": ["../contracts/src"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

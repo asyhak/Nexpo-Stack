@@ -1,0 +1,10 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@repo/ui": ["./components/ui/index.ts"]
+    }
+  },
+  "include": ["components/ui/**/*", "nativewind-env.d.ts"],
+  "exclude": ["node_modules"]
+}

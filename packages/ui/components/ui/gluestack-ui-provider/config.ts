@@ -1,0 +1,68 @@
+"use client";
+import { vars } from "nativewind";
+
+export const colors = {
+  light: {
+    /* Semantic Variables */
+    "--background": "255 255 255",
+    "--foreground": "9 9 11",
+    "--card": "255 255 255",
+    "--card-foreground": "9 9 11",
+    "--popover": "255 255 255",
+    "--popover-foreground": "9 9 11",
+    "--primary": "24 24 27",
+    "--primary-foreground": "250 250 249",
+    "--secondary": "244 244 245",
+    "--secondary-foreground": "24 24 27",
+    "--muted": "244 244 245",
+    "--muted-foreground": "113 113 122",
+    "--accent": "244 244 245",
+    "--accent-foreground": "24 24 27",
+    "--destructive": "239 68 68",
+    "--destructive-foreground": "250 250 249",
+    "--border": "228 228 231",
+    "--input": "228 228 231",
+    "--ring": "9 9 11",
+    "--success": "34 197 94",
+    "--success-foreground": "250 250 249",
+    "--warning": "234 179 8",
+    "--warning-foreground": "250 250 249",
+    "--info": "59 130 246",
+    "--info-foreground": "250 250 249",
+    "--radius": "0.5rem",
+  },
+  dark: {
+    /* Semantic Variables */
+    "--background": "9 9 11",
+    "--foreground": "250 250 249",
+    "--card": "9 9 11",
+    "--card-foreground": "250 250 249",
+    "--popover": "9 9 11",
+    "--popover-foreground": "250 250 249",
+    "--primary": "250 250 249",
+    "--primary-foreground": "24 24 27",
+    "--secondary": "39 39 42",
+    "--secondary-foreground": "250 250 249",
+    "--muted": "39 39 42",
+    "--muted-foreground": "161 161 170",
+    "--accent": "39 39 42",
+    "--accent-foreground": "250 250 249",
+    "--destructive": "127 29 29",
+    "--destructive-foreground": "250 250 249",
+    "--border": "39 39 42",
+    "--input": "39 39 42",
+    "--ring": "212 212 216",
+    "--success": "22 101 52",
+    "--success-foreground": "250 250 249",
+    "--warning": "234 179 8",
+    "--warning-foreground": "250 250 249",
+    "--info": "59 130 246",
+    "--info-foreground": "250 250 249",
+    "--radius": "0.5rem",
+  },
+};
+
+export const config = {
+  light: vars(colors.light),
+  dark: vars(colors.dark),
+};

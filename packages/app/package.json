@@ -1,0 +1,28 @@
+{
+  "name": "@repo/app",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "skeleton:build": "boneyard-js build --out ./bones",
+    "skeleton:build:native": "boneyard-js build --native --out ./bones"
+  },
+  "dependencies": {
+    "@gluestack-ui/nativewind-utils": "^1.0.28",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-navigation/native": "^7.1.6",
+    "@repo/contracts": "workspace:*",
+    "@repo/env": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "react-native-safe-area-context": "catalog:",
+    "solito": "catalog:",
+    "@repo/ui": "workspace:*",
+    "zustand": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "19.1.0",
+    "boneyard-js": "^1.7.7",
+    "typescript": "^5.x"
+  }
+}

@@ -1,0 +1,20 @@
+# Universal Monorepo Context
+
+## About
+This project is a high-performance universal monorepo starter using Gluestack UI v3, Solito, Next.js, and Expo. It aims for 100% code sharing between Web and Mobile platforms while maintaining platform-specific optimizations like Next.js App Router for Web and Expo Router for Mobile.
+
+## Core Technologies
+- Framework: Next.js (Web), Expo (Mobile)
+- UI: Gluestack UI v3 (Native & Web)
+- Navigation: Solito (Unified Navigation)
+- State: Zustand (Global Store), TanStack Query (Server State)
+- Language: TypeScript
+
+## Key Patterns
+- **Web App Router**: Uses Server Components for SEO and Data fetching.
+- **Shared Features**: Business logic and screens reside in `packages/app`.
+- **UI Components**: Style tokens and base components reside in `packages/ui`.
+- **SEO**: Centralized configuration via `site-config.ts`, dynamic Metadata, and JSON-LD.
+
+## Author
+- hakimasyrofi (https://github.com/hakimasyrofi)

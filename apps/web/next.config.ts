@@ -8,11 +8,10 @@ const nextConfig: NextConfig = {
   transpilePackages: [
     "app",
     "ui",
-    "nativewind",
+    "uniwind",
     "@gluestack-ui/core",
     "@gluestack-ui/utils",
     "react-native-svg",
-    "react-native-css-interop",
     "react-native-reanimated",
     "expo-modules-core",
     "expo-linking",

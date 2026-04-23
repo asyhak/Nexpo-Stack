@@ -13,7 +13,7 @@
     "@gluestack/ui-next-adapter": "4.0.0-alpha.0",
     "@repo/app": "workspace:*",
     "@repo/env": "workspace:*",
-    "nativewind": "catalog:",
+    "uniwind": "catalog:",
     "next": "16.2.4",
     "react": "catalog:",
     "react-aria": "catalog:",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "catalog:",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

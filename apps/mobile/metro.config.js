@@ -1,5 +1,5 @@
 const { getDefaultConfig } = require("expo/metro-config");
-const { withNativeWind } = require("nativewind/metro");
+const { withUniwindConfig } = require("uniwind/metro");
 const path = require("path");
 const projectRoot = __dirname;
 const workspaceRoot = path.resolve(projectRoot, "../..");
@@ -12,6 +12,8 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, "node_modules"),
 ];
 
-module.exports = withNativeWind(config, {
-  input: "../../packages/ui/global.css",
+module.exports = withUniwindConfig(config, {
+  cssEntryFile: "../../packages/ui/global.css",
+  dtsFile: "./uniwind-types.d.ts",
+  extraThemes: ["dark"],
 });

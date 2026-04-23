@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "expo": ">=54.0.0",
-    "nativewind": ">=4.0.0",
+    "uniwind": "catalog:",
     "react": "*",
     "react-dom": "*",
     "react-native": "^*",
@@ -33,7 +33,7 @@
     "@expo/html-elements": "^0.13.7",
     "@gluestack-ui/core": "4.1.0-alpha.3",
     "@gluestack-ui/nativewind-utils": "^1.0.28",
-    "@gluestack-ui/utils": "4.0.0-alpha.0",
+    "@gluestack-ui/utils": "^4.1.0-alpha.0",
     "@react-aria/dialog": "catalog:",
     "@react-aria/focus": "catalog:",
     "@react-aria/interactions": "catalog:",
@@ -46,7 +46,8 @@
     "react-native-aria": "catalog:",
     "react-native-safe-area-context": "catalog:",
     "react-stately": "catalog:",
+    "uniwind": "catalog:",
     "tailwind-merge": "^3.3.1",
-    "tailwind-variants": "^3.1.0"
+    "tailwind-variants": "catalog:"
   }
 }

@@ -1,7 +1,7 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "types": ["nativewind/types"],
+
     "paths": {
       "@repo/app/*": ["./*"],
       "@repo/ui": ["../ui"],

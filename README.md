@@ -28,9 +28,12 @@ Nexpo Stack combines the power of **Next.js** for the web and **Expo** for mobil
 | :-------------------- | :--------------------------------------- | :------- | :---------------------------------------- |
 | **Web Framework**     | [Next.js](https://nextjs.org/)           | `16.2.4` | App Router, SEO optimized, Edge ready.    |
 | **Mobile Framework**  | [Expo SDK](https://expo.dev/)            | `55.x`   | Native performance, easy deployments.     |
+| **Backend Framework** | [Hono](https://hono.dev/)                | `Latest` | Ultrafast web framework with RPC support. |
 | **Universal Routing** | [Solito](https://solito.dev/)            | `5.x`    | Unified navigation for Web and Native.    |
 | **UI Components**     | [gluestack-ui v4](https://gluestack.io/) | `4.1.x`  | Shadcn-compatible, accessible primitives. |
 | **Styling**           | [NativeWind](https://nativewind.dev/)    | `v4`     | Tailwind CSS for React Native & Web.      |
+| **Database & ORM**    | [Drizzle](https://orm.drizzle.team/)     | `Latest` | Type-safe SQLite ORM.                     |
+| **Authentication**    | [Better Auth](https://better-auth.com/)  | `Latest` | Comprehensive auth for any platform.      |
 | **Icons**             | [Lucide](https://lucide.dev/)            | `Latest` | Beautiful, consistent iconography.        |
 | **Server State**      | [TanStack Query](https://tanstack.com/)  | `v5`     | Powerful data fetching & caching.         |
 | **Client State**      | [Zustand](https://zustand-demo.pmnd.rs/) | `Latest` | Simple, scalable state management.        |
@@ -47,23 +50,30 @@ Nexpo Stack uses a **Shared-First** monorepo architecture powered by Turborepo.
 graph TD
     A[apps/web - Next.js] --> D[packages/app]
     B[apps/mobile - Expo] --> D
+    S[apps/server - Hono] --> DB[packages/db - Drizzle]
+    S --> AU[packages/auth - Better Auth]
     D --> E[packages/ui - gluestack v4]
     D --> F[Solito Routing]
-    D --> H[packages/contracts - Zod]
+    D --> SC[packages/schema - Zod]
     D --> I[packages/app/store - Zustand]
     D --> J[packages/app/services - API]
+    S --> SC
+    AU --> DB
     E --> G[NativeWind / Tailwind]
-    A --> H
-    B --> H
+    A --> SC
+    B --> SC
 ```
 
 ### Workspace Breakdown
 
 - **`apps/web`**: Next.js App Router. Blazing fast, SEO-friendly web experience.
 - **`apps/mobile`**: Expo / React Native. High-fidelity mobile experience with `expo-router`.
+- **`apps/server`**: Hono backend. Provides end-to-end type-safe API with Hono RPC.
 - **`packages/app`**: The core logic. Contains screens, business logic, and navigation providers.
 - **`packages/ui`**: Shared design system built with gluestack-ui v4 (Shadcn-like components).
-- **`packages/contracts`**: Centralized TypeScript interfaces and Zod schemas.
+- **`packages/schema`**: Centralized Zod schemas and TypeScript types shared across all platforms.
+- **`packages/db`**: Database layer using Drizzle ORM and SQLite.
+- **`packages/auth`**: Universal authentication configuration via Better Auth.
 - **`packages/env`**: Unified environment variable management.
 
 ---

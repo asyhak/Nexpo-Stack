@@ -18,11 +18,14 @@ This Turborepo monorepo is built for **Shared-First** development. Most business
 | :---------------------------- | :-------------------------- | :---------------------------- |
 | `apps/mobile/`                | Expo iOS/Android App        | Expo Router, SDK 55           |
 | `apps/web/`                   | Next.js Web App             | App Router, Next.js 16.2      |
+| `apps/server/`                | Hono Backend Server         | Hono, Hono RPC                |
 | `packages/app/`               | **Shared Features & Logic** | Solito, React 19, Lucide      |
-| `packages/ui/`                | **Shared Design System**    | Gluestack v3, NativeWind v4   |
-| `packages/contracts/`         | **Centralized Contracts**   | TypeScript, Zod, Shared Types |
+| `packages/ui/`                | **Shared Design System**    | Gluestack v4, NativeWind v4   |
+| `packages/schema/`            | **Centralized Schemas**     | TypeScript, Zod, Shared Types |
+| `packages/db/`                | **Database Layer**          | Drizzle ORM, SQLite           |
+| `packages/auth/`              | **Authentication**          | Better Auth                   |
 | `packages/app/store/`         | **Client State**            | Zustand                       |
-| `packages/app/services/`      | **Implementation**          | API Fetchers & Mocks          |
+| `packages/app/services/`      | **API & Implementation**    | Hono RPC Client               |
 | `packages/typescript-config/` | **Centralized TSConfig**    | Modular TypeScript Configs    |
 | `packages/app/hooks/`         | **Server State Hooks**      | TanStack Query                |
 
@@ -34,17 +37,16 @@ Always use the fastest command for the task. Most commands are run from the **ro
 
 | Command                | Action                                                |
 | :--------------------- | :---------------------------------------------------- |
-| `pnpm dev`             | Start Web, Mobile, and shared packages in dev mode    |
+| `pnpm dev`             | Start Web, Mobile, Server, and shared packages        |
 | `pnpm build`           | Build all workspaces for production                   |
 | `pnpm lint`            | Run ESLint across the entire monorepo                 |
 | `pnpm format`          | Run Prettier on all files                             |
 | `pnpm g screen <Name>` | **Scaffold a new screen** across Web, Mobile, and App |
 | `pnpm add-ui <Name>`   | **Add official Gluestack UI** primitive using CLI     |
-
-| `pnpm parity-check` | Verify Web and Mobile routes are in sync |
-| `pnpm skeleton:build` | **Generate skeletons** for Web (captures UI layout) |
-| `pnpm skeleton:build:native` | **Generate skeletons** for Mobile (requires running) |
-| `pnpm clean` | Wipe all `node_modules` and caches (uses `rimraf`) |
+| `pnpm db:push`         | **Push DB schema** changes to SQLite                  |
+| `pnpm db:studio`       | **Open Drizzle Studio** to explore database           |
+| `pnpm parity-check`    | Verify Web and Mobile routes are in sync              |
+| `pnpm clean`           | Wipe all `node_modules` and caches                    |
 
 ---
 
@@ -81,35 +83,52 @@ To ensure the app looks and feels premium on all platforms, adhere to these stri
     ```
 - **Zustand 5 Compatibility**: For Zustand 5, ensure `babel.config.js` in the mobile app includes `unstable_transformImportMeta: true` in the `babel-preset-expo` options to handle environment metadata correctly.
 
-### 3. Centralized Contracts (@repo/contracts)
+### 3. Centralized Schemas (@repo/schema)
 
 - **Zod as Source of Truth**: All shared data models **MUST** be defined using Zod schemas. This ensures runtime integrity and provides inferred TypeScript types.
-- **Single Source of Truth**: All shared TypeScript interfaces, Zod schemas, and API response models **MUST** reside in `packages/contracts`.
-- **Validation**: Use Zod schemas exported from `@repo/contracts` for:
+- **Single Source of Truth**: All shared TypeScript interfaces, Zod schemas, and API response models **MUST** reside in `packages/schema`.
+- **Validation**: Use Zod schemas exported from `@repo/schema` for:
   - **API Boundaries**: Validate data coming from the network before it enters your app.
   - **Forms**: Use schemas for client-side validation (e.g., with React Hook Form).
-- **Consistency**: Never redefine an interface (e.g., `User`) locally if it exists in the contracts package.
+- **Consistency**: Never redefine an interface (e.g., `User`) locally if it exists in the schema package.
 
-#### ❓ Why Zod for Contracts?
+#### ❓ Why Zod for Schemas?
 
-In a cross-platform monorepo (Expo + Next.js), TypeScript types are not enough because they are erased at runtime. Zod allows us to:
+In a cross-platform monorepo (Expo + Next.js + Hono), TypeScript types are not enough because they are erased at runtime. Zod allows us to:
 
 1. **Catch API Mismatches**: If the backend changes, the frontend catches the error at the network layer rather than crashing in a component.
 2. **Inferred Types**: Define once, get both validation and types (`z.infer`).
 3. **Unified Validation**: Use the same logic for the DB, API, and UI.
 
-## Directory Organization
+### 4. Backend & API Logic (Hono RPC)
 
-1. **`packages/ui/components/ui` (The Library)**: This folder is RESERVED for pure components added directly via the Gluestack CLI. DO NOT modify these files.
-2. **`packages/ui/components/custom` (The Application)**: This folder is for custom components, modified CLI components, or project-specific UI compositions.
+- **End-to-End Type Safety**: We use **Hono RPC** to share types between the server and the frontend without code generation.
+- **AppType**: The `AppType` exported from `apps/server/src/index.ts` is the source of truth for all API routes.
+- **API Client**: Always use the `apiClient` from `packages/app/services/api-client.ts`.
+  - **Usage**:
+    ```tsx
+    import { apiClient } from "../services/api-client";
+    const res = await apiClient.users.$get();
+    const data = await res.json(); // Data is fully typed!
+    ```
+- **Error Handling**: Use the Zod schemas from `@repo/schema` to handle validation errors consistently on both sides.
 
-### 3. Universal Navigation (Solito)
+### 5. Database & Authentication
+
+- **Database (Drizzle ORM)**: We use **SQLite** with **Drizzle ORM** for lightweight, type-safe data persistence.
+  - Schema is defined in `packages/db/src/schema/`.
+  - Use `pnpm db:push` to sync schema changes during development.
+- **Authentication (Better Auth)**: A universal authentication solution integrated with Hono and Drizzle.
+  - Config resides in `packages/auth`.
+  - Client hooks are available in `@repo/auth/client`.
+
+### 6. Universal Navigation (Solito)
 
 - **Button Navigation**: For complex buttons or UI elements (like those using `Box` or Gluestack `Button`), prefer using the `useRouter` hook from `solito/navigation` with the `onPress` prop. This is significantly more reliable on Native/Mobile than wrapping complex layouts in a `Link` component.
 - **Route Definitions**: All routes **MUST** be defined in `packages/app/constants/routes.ts`.
 - **Hooks**: Use `useRouter` from `solito/navigation` instead of platform-specific hooks.
 
-### 4. State Management Strategy
+### 7. State Management Strategy (Dual-Layer)
 
 We use a dual-layer state management approach to ensure scalability and performance:
 
@@ -121,14 +140,14 @@ We use a dual-layer state management approach to ensure scalability and performa
   - **Usecase**: Authentication status, theme overrides, user preferences, and cross-screen ephemeral state.
   - **Location**: Define stores in `packages/app/store/`.
   - **Best Practice**: Use `devtools` middleware and keep stores focused (e.g., `user-store.ts`).
-  - **Next.js Directive**: Any component or screen consuming client-side features (`useState`, `useEffect`, custom hooks, or Zustand) MUST include the `"use client";` directive at the top of the file. Next.js App Router defaults to Server Components, so omitting this will cause "React Server Component" or `useSyncExternalStore` errors.
+  - **Next.js Directive**: Any component or screen consuming client-side features (`useState`, `useEffect`, custom hooks, or Zustand) MUST include the `"use client";` directive at the top of the file.
 
-### 5. Native-First Logic
+### 8. Native-First Logic
 
 - **Verification**: If a UI works on Mobile (Expo) using NativeWind, it will almost certainly work on Web. Always test Mobile first.
 - **Platform Branching**: Use `Platform.OS === 'web'` for minor logic differences. Use `.web.tsx` / `.native.tsx` only for platform-specific implementations.
 
-### 6. Automated Skeleton Loading (Boneyard)
+### 9. Automated Skeleton Loading (Boneyard)
 
 To provide a premium loading experience, we use `boneyard-js` to auto-generate pixel-perfect skeleton screens.
 
@@ -138,15 +157,14 @@ To provide a premium loading experience, we use `boneyard-js` to auto-generate p
   - Skeletons are **NOT** hardcoded. They are captured from the running UI.
   - After updating a UI layout, you **MUST** run the generation command to update the "bones" JSON files in `packages/app/bones/`.
 - **Cross-Platform**: The `Skeleton` component is universal. It uses `boneyard-js/react` on Web and `boneyard-js/native` on Mobile.
-- **Reference**: For detailed guidance on capture and fixtures, see the [boneyard-js skill](file:///c:/Users/UniPin/Downloads/gluestack-next-expo/.agents/skills/boneyard-js/SKILL.md).
 
-### 7. TypeScript Integrity (@repo/typescript-config)
+### 10. TypeScript Integrity (@repo/typescript-config)
 
 - **Centralized Rules**: Always extend the shared configuration from `@repo/typescript-config` in your package's `tsconfig.json`.
 - **Environment Specific**: Use the correct base (e.g., `nextjs.json` for web apps, `native.json` for Expo apps, `react-library.json` for UI packages).
 - **No In-Situ Rules**: Avoid overriding core compiler flags (like `strict`, `noEmit`, `target`) inside individual packages. Change them in the configuration package instead.
 
-### 8. Icon Strategy (@repo/ui)
+### 11. Icon Strategy (@repo/ui)
 
 - **Centralized Wrapper**: Always import icons from `ui` instead of `lucide-react` or `lucide-react-native` directly.
 - **Universal API**: The `ui` package provides a unified export of Lucide icons under the `Icons` namespace.
@@ -156,15 +174,21 @@ To provide a premium loading experience, we use `boneyard-js` to auto-generate p
   <Icon as={Icons.Home} size="md" />;
   ```
 
-### 9. Next.js Directive ("use client")
+### 12. Next.js Directive ("use client")
 
 - **Requirement**: Any file in `packages/app` or `packages/ui` that uses **React hooks** (`useState`, `useEffect`, `useContext`, etc.) or **client-side libraries** (Zustand, TanStack Query) **MUST** have `"use client";` at the very top.
 - **Why**: Next.js App Router defaults to **Server Components**. Shared code in a monorepo will cause a runtime error on Web if it attempts to use client-only features without this directive.
-- **Scope**: This applies to all screens in `packages/app/features` and most custom components in `packages/ui/components/custom`.
 
 ---
 
-### 10. UI Components Inventory (Gluestack v4)
+## 📂 Directory Organization
+
+1. **`packages/ui/components/ui` (The Library)**: This folder is RESERVED for pure components added directly via the Gluestack CLI. DO NOT modify these files.
+2. **`packages/ui/components/custom` (The Application)**: This folder is for custom components, modified CLI components, or project-specific UI compositions.
+
+---
+
+### 📦 UI Components Inventory (Gluestack v4)
 
 Use these official components to build high-fidelity interfaces. If a component is missing from `packages/ui/components/ui`, add it using the CLI.
 
@@ -239,6 +263,7 @@ Use the official Gluestack UI v4 CLI to add primitives to the design system.
 If you see persistent TypeScript errors (like `File '@repo/typescript-config/base.json' not found`) even though `pnpm check-types` passes, it's likely a caching issue with the VS Code TypeScript Language Server (especially after creating new packages or running `pnpm install`).
 
 To fix this immediately, you just need to restart the TS server. You can do this by:
+
 1. Opening the VS Code Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
 2. Typing "Developer: Restart TS Server" and hitting enter. (Alternatively, you can just reload the VS Code window).
 

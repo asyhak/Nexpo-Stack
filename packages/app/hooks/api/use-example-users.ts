@@ -1,9 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  ExampleUser,
-  ExampleUserSchema,
-  CreateUserForm,
-} from "@repo/schema";
+import { ExampleUser, ExampleUserSchema, CreateUserForm } from "@repo/schema";
 import { apiClient } from "../../services/api-client";
 
 /**

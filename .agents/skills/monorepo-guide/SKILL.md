@@ -14,20 +14,20 @@ This skill provides deep-dive context about the repository's internal configurat
 
 This Turborepo monorepo is built for **Shared-First** development. Most business logic and UI live in `packages/app`.
 
-| Location                      | Purpose                      | Core Technologies             |
-| :---------------------------- | :--------------------------- | :---------------------------- |
-| `apps/mobile/`                | Expo iOS/Android App         | Expo Router, SDK 55           |
-| `apps/web/`                   | Next.js Web App              | App Router, Next.js 16.2      |
-| `apps/server/`                | Hono Backend Server          | Hono, Hono RPC                |
-| `packages/app/`               | **Shared Features & Logic**  | Solito, React 19, Lucide      |
-| `packages/ui/`                | **Shared Design System**     | Gluestack v4, NativeWind v4   |
-| `packages/schema/`            | **Centralized Schemas**      | TypeScript, Zod, Shared Types |
-| `packages/db/`                | **Database Layer**           | Drizzle ORM, SQLite           |
-| `packages/auth/`              | **Authentication**           | Better Auth                   |
-| `packages/app/store/`         | **Client State**             | Zustand                       |
-| `packages/app/services/`      | **API & Implementation**     | Hono RPC Client               |
-| `packages/typescript-config/` | **Centralized TSConfig**     | Modular TypeScript Configs    |
-| `packages/app/hooks/`         | **Server State Hooks**       | TanStack Query                |
+| Location                      | Purpose                     | Core Technologies             |
+| :---------------------------- | :-------------------------- | :---------------------------- |
+| `apps/mobile/`                | Expo iOS/Android App        | Expo Router, SDK 55           |
+| `apps/web/`                   | Next.js Web App             | App Router, Next.js 16.2      |
+| `apps/server/`                | Hono Backend Server         | Hono, Hono RPC                |
+| `packages/app/`               | **Shared Features & Logic** | Solito, React 19, Lucide      |
+| `packages/ui/`                | **Shared Design System**    | Gluestack v4, NativeWind v4   |
+| `packages/schema/`            | **Centralized Schemas**     | TypeScript, Zod, Shared Types |
+| `packages/db/`                | **Database Layer**          | Drizzle ORM, SQLite           |
+| `packages/auth/`              | **Authentication**          | Better Auth                   |
+| `packages/app/store/`         | **Client State**            | Zustand                       |
+| `packages/app/services/`      | **API & Implementation**    | Hono RPC Client               |
+| `packages/typescript-config/` | **Centralized TSConfig**    | Modular TypeScript Configs    |
+| `packages/app/hooks/`         | **Server State Hooks**      | TanStack Query                |
 
 ---
 

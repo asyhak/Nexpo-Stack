@@ -36,8 +36,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { data, isPending } = authClient.useSession();
 
   const user = (data?.user as AuthUser | undefined) ?? null;
-  const session = (data?.session as Record<string, unknown> | undefined) ??
-    null;
+  const session =
+    (data?.session as Record<string, unknown> | undefined) ?? null;
 
   const value = useMemo<AuthContextType>(
     () => ({

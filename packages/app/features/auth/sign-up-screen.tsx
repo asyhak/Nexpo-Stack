@@ -201,9 +201,7 @@ export function SignUpScreen() {
                     />
                     <InputSlot onPress={() => setShowPassword(!showPassword)}>
                       <InputIcon
-                        as={
-                          showPassword ? LucideIcons.EyeOff : LucideIcons.Eye
-                        }
+                        as={showPassword ? LucideIcons.EyeOff : LucideIcons.Eye}
                         className="text-muted-foreground"
                       />
                     </InputSlot>
@@ -285,9 +283,7 @@ export function SignUpScreen() {
               className="rounded-xl mt-2"
               onPress={form.handleSubmit}
             >
-              <ButtonText className="font-semibold">
-                Create Account
-              </ButtonText>
+              <ButtonText className="font-semibold">Create Account</ButtonText>
             </Button>
           </VStack>
 
@@ -295,10 +291,7 @@ export function SignUpScreen() {
             <Text className="text-muted-foreground">
               Already have an account?
             </Text>
-            <Button
-              variant="link"
-              onPress={() => router.push(ROUTES.SIGN_IN)}
-            >
+            <Button variant="link" onPress={() => router.push(ROUTES.SIGN_IN)}>
               <ButtonText className="text-primary font-semibold">
                 Sign In
               </ButtonText>

@@ -291,7 +291,7 @@ export function SignUpScreen() {
             </Button>
           </VStack>
 
-          <HStack className="justify-center mt-6 gap-1">
+          <HStack space="xs" className="justify-center items-center mt-6">
             <Text className="text-muted-foreground">
               Already have an account?
             </Text>

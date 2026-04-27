@@ -177,14 +177,11 @@ export function SignInScreen() {
             </Button>
           </VStack>
 
-          <HStack className="justify-center mt-6 gap-1">
+          <HStack space="xs" className="justify-center items-center mt-6">
             <Text className="text-muted-foreground">
               Don't have an account?
             </Text>
-            <Button
-              variant="link"
-              onPress={() => router.push(ROUTES.SIGN_UP)}
-            >
+            <Button variant="link" onPress={() => router.push(ROUTES.SIGN_UP)}>
               <ButtonText className="text-primary font-semibold">
                 Sign Up
               </ButtonText>

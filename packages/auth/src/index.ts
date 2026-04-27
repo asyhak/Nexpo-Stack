@@ -2,6 +2,7 @@ import { expo } from "@better-auth/expo";
 import { createDb } from "@repo/db";
 import * as schema from "@repo/db/schema";
 import { env } from "@repo/env/server";
+import { APP_SCHEME } from "@repo/env/constants";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
@@ -15,7 +16,7 @@ export function createAuth() {
     }),
     trustedOrigins: [
       env.CORS_ORIGIN,
-      "nexpo-stack://",
+      `${APP_SCHEME}://`,
       ...(env.NODE_ENV === "development"
         ? [
             "exp://",

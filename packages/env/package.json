@@ -6,7 +6,8 @@
   "exports": {
     "./server": "./src/server.ts",
     "./web": "./src/web.ts",
-    "./native": "./src/native.ts"
+    "./native": "./src/native.ts",
+    "./constants": "./src/constants.ts"
   },
   "scripts": {
     "check-types": "tsc --noEmit"

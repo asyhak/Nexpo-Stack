@@ -24,6 +24,7 @@ import {
   ScreenWrapper,
   LucideIcons,
 } from "@repo/ui";
+import { SignUpSchema } from "@repo/schema";
 import { useAuth } from "../../provider/auth-provider";
 import { ROUTES } from "../../constants/routes";
 
@@ -36,11 +37,10 @@ export function SignUpScreen() {
 
   const form = useForm({
     defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
+    validators: {
+      onChange: SignUpSchema,
+    },
     onSubmit: async ({ value }) => {
-      if (value.password !== value.confirmPassword) {
-        setError("Passwords do not match");
-        return;
-      }
       setError("");
       const result = await signUp(value.name, value.email, value.password);
       if (result?.error) {
@@ -74,17 +74,7 @@ export function SignUpScreen() {
           ) : null}
 
           <VStack className="gap-4">
-            <form.Field
-              name="name"
-              validators={{
-                onChange: ({ value }) => {
-                  if (!value) return "Name is required";
-                  if (value.length < 2)
-                    return "Name must be at least 2 characters";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="name">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -111,7 +101,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -119,17 +109,7 @@ export function SignUpScreen() {
               )}
             </form.Field>
 
-            <form.Field
-              name="email"
-              validators={{
-                onChange: ({ value }) => {
-                  if (!value) return "Email is required";
-                  if (!/\S+@\S+\.\S+/.test(value))
-                    return "Invalid email address";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="email">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -158,7 +138,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -166,17 +146,7 @@ export function SignUpScreen() {
               )}
             </form.Field>
 
-            <form.Field
-              name="password"
-              validators={{
-                onChange: ({ value }) => {
-                  if (!value) return "Password is required";
-                  if (value.length < 8)
-                    return "Password must be at least 8 characters";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="password">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -209,7 +179,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -217,16 +187,7 @@ export function SignUpScreen() {
               )}
             </form.Field>
 
-            <form.Field
-              name="confirmPassword"
-              validators={{
-                onChangeListenTo: ["password"],
-                onChange: ({ value }) => {
-                  if (!value) return "Please confirm your password";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="confirmPassword">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -269,7 +230,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}

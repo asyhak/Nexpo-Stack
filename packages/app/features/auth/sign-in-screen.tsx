@@ -24,6 +24,7 @@ import {
   ScreenWrapper,
   LucideIcons,
 } from "@repo/ui";
+import { SignInSchema } from "@repo/schema";
 import { useAuth } from "../../provider/auth-provider";
 import { ROUTES } from "../../constants/routes";
 
@@ -35,6 +36,9 @@ export function SignInScreen() {
 
   const form = useForm({
     defaultValues: { email: "", password: "" },
+    validators: {
+      onChange: SignInSchema,
+    },
     onSubmit: async ({ value }) => {
       setError("");
       const result = await signIn(value.email, value.password);
@@ -69,17 +73,7 @@ export function SignInScreen() {
           ) : null}
 
           <VStack className="gap-4">
-            <form.Field
-              name="email"
-              validators={{
-                onChange: ({ value }) => {
-                  if (!value) return "Email is required";
-                  if (!/\S+@\S+\.\S+/.test(value))
-                    return "Invalid email address";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="email">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -108,7 +102,7 @@ export function SignInScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -116,17 +110,7 @@ export function SignInScreen() {
               )}
             </form.Field>
 
-            <form.Field
-              name="password"
-              validators={{
-                onChange: ({ value }) => {
-                  if (!value) return "Password is required";
-                  if (value.length < 8)
-                    return "Password must be at least 8 characters";
-                  return undefined;
-                },
-              }}
-            >
+            <form.Field name="password">
               {(field) => (
                 <FormControl
                   isInvalid={field.state.meta.errors.length > 0}
@@ -159,7 +143,7 @@ export function SignInScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]}
+                        {field.state.meta.errors[0]?.toString()}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}

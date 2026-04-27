@@ -2,16 +2,7 @@
 
 import React, { createContext, useContext, useMemo } from "react";
 import { authClient } from "../services/auth-client";
-
-type AuthUser = {
-  id: string;
-  name: string;
-  email: string;
-  emailVerified: boolean;
-  image: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { AuthUser } from "@repo/schema";
 
 type AuthContextType = {
   user: AuthUser | null;

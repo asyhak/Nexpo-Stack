@@ -1,5 +1,17 @@
 import { z } from "zod";
 
+export const AuthUserSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string().email(),
+  emailVerified: z.boolean(),
+  image: z.string().nullable().optional(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+export type AuthUser = z.infer<typeof AuthUserSchema>;
+
 export const SignInSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),

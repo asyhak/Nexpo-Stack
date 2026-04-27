@@ -19,26 +19,11 @@ import {
 } from "@repo/ui";
 import { useRouter } from "solito/navigation";
 import { ROUTES } from "../../constants/routes";
-import { useExampleUserStore } from "../../store/example-user-store";
-import { fetchUser } from "../../services/example-user-service";
-import { useState } from "react";
+import { useAuth } from "../../provider/auth-provider";
 
 export function HomeScreen() {
   const router = useRouter();
-  const { user, setUser, logout } = useExampleUserStore();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleLogin = async () => {
-    setIsLoading(true);
-    try {
-      const userData = await fetchUser("1"); // Fetch mock user "Jin-Woo Sung"
-      setUser(userData);
-    } catch (error) {
-      console.error("Failed to login:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { user, isAuthenticated, isLoading, signOut } = useAuth();
 
   const currentYear = new Date().getFullYear();
 
@@ -80,25 +65,27 @@ export function HomeScreen() {
         {/* User Session Section (Zustand Demo) */}
         <VStack className="gap-6">
           <Heading size="2xl" className="font-bold text-foreground">
-            Global State (Zustand)
+            Authentication
           </Heading>
           <Card className="p-8 border-2 border-primary/10 bg-card/50 backdrop-blur-sm">
-            {!user ? (
+            {isLoading ? (
+              <VStack className="items-center gap-4 py-4">
+                <Text className="text-muted-foreground text-lg">
+                  Loading session...
+                </Text>
+              </VStack>
+            ) : !isAuthenticated ? (
               <VStack className="items-center gap-6 py-4">
                 <Text className="text-center text-muted-foreground text-lg">
-                  No active session found. Test the global Zustand store by
-                  simulating a login.
+                  No active session found. Sign in with your email and password.
                 </Text>
                 <Button
                   size="xl"
                   action="primary"
                   className="rounded-full px-10"
-                  onPress={handleLogin}
-                  isDisabled={isLoading}
+                  onPress={() => router.push(ROUTES.SIGN_IN)}
                 >
-                  <ButtonText className="font-bold">
-                    {isLoading ? "Authenticating..." : "Simulate Login"}
-                  </ButtonText>
+                  <ButtonText className="font-bold">Sign In</ButtonText>
                 </Button>
               </VStack>
             ) : (
@@ -109,16 +96,11 @@ export function HomeScreen() {
                   </Box>
                   <VStack>
                     <Heading size="lg" className="text-foreground">
-                      {user.name}
+                      {user?.name}
                     </Heading>
                     <HStack className="gap-2 items-center">
-                      <Box className="bg-primary/10 px-2 py-0.5 rounded">
-                        <Text size="xs" className="text-primary font-bold">
-                          {user.rank}
-                        </Text>
-                      </Box>
-                      <Text size="sm" className="text-muted-foreground italic">
-                        {user.class}
+                      <Text size="sm" className="text-muted-foreground">
+                        {user?.email}
                       </Text>
                     </HStack>
                   </VStack>
@@ -126,10 +108,10 @@ export function HomeScreen() {
                 <Button
                   variant="outline"
                   action="negative"
-                  onPress={logout}
+                  onPress={signOut}
                   className="rounded-full border-2"
                 >
-                  <ButtonText>Logout Session</ButtonText>
+                  <ButtonText>Sign Out</ButtonText>
                 </Button>
               </HStack>
             )}

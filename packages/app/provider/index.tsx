@@ -9,24 +9,27 @@ import {
 
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./query-client";
+import { AuthProvider } from "./auth-provider";
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <GluestackUIProvider mode="light">
-        <SafeAreaProvider
-          initialMetrics={
-            Platform.OS === "web"
-              ? {
-                  frame: { x: 0, y: 0, width: 0, height: 0 },
-                  insets: { top: 0, left: 0, right: 0, bottom: 0 },
-                }
-              : initialWindowMetrics
-          }
-        >
-          {children}
-        </SafeAreaProvider>
-      </GluestackUIProvider>
+      <AuthProvider>
+        <GluestackUIProvider mode="light">
+          <SafeAreaProvider
+            initialMetrics={
+              Platform.OS === "web"
+                ? {
+                    frame: { x: 0, y: 0, width: 0, height: 0 },
+                    insets: { top: 0, left: 0, right: 0, bottom: 0 },
+                  }
+                : initialWindowMetrics
+            }
+          >
+            {children}
+          </SafeAreaProvider>
+        </GluestackUIProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -373,14 +373,14 @@ importers:
         specifier: ^0.13.7
         version: 0.13.8(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       '@gluestack-ui/core':
-        specifier: 4.1.0-alpha.3
-        version: 4.1.0-alpha.3(@gluestack-ui/utils@4.1.0-alpha.0(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
+        specifier: 5.0.13-alpha.0
+        version: 5.0.13-alpha.0(@gluestack-ui/utils@5.0.6-alpha.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       '@gluestack-ui/nativewind-utils':
         specifier: ^1.0.28
         version: 1.0.28(nativewind@4.2.1(react-native-reanimated@4.2.1(react-native-worklets@0.7.2(@babel/core@7.29.0)(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(react@19.2.0)(tailwindcss@4.1.18)
       '@gluestack-ui/utils':
-        specifier: ^4.1.0-alpha.0
-        version: 4.1.0-alpha.0(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)
+        specifier: 5.0.6-alpha.0
+        version: 5.0.6-alpha.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)
       '@react-aria/dialog':
         specifier: 'catalog:'
         version: 3.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -1335,11 +1335,11 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@gluestack-ui/core@4.1.0-alpha.3':
-    resolution: {integrity: sha512-FBzs9TvIo2Z7CaqNV6xXDUguXcdf2l7t5ugYxsEJVWGtyfo9W4Bsb8LHECsDaPIrRp7DOSn0LoI/dA7yeAyeag==}
+  '@gluestack-ui/core@5.0.13-alpha.0':
+    resolution: {integrity: sha512-HxwbOSKS84QRFy7J1EWr9cJ+9HF31A0QUxD0nxZnBEH4PZcZ4ge0S8XDiD5LGpJ/YJW2lVDJFSKiCWn4VKUhvQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@gluestack-ui/utils': '>=4.0.0-alpha.0'
+      '@gluestack-ui/utils': '*'
       react: 19.2.0
       react-native: 0.83.4
       react-native-safe-area-context: 5.6.2
@@ -1352,8 +1352,8 @@ packages:
       nativewind: '>=4.0'
       react: 19.2.0
 
-  '@gluestack-ui/utils@4.1.0-alpha.0':
-    resolution: {integrity: sha512-kDf/br1E2jn9fv6d1QlG074ABrAUhgfiti/a3rf17oiYbEOPIifdZXLX9ibM7rLHEgZSDHawhrUwa40+nWmZuQ==}
+  '@gluestack-ui/utils@5.0.6-alpha.0':
+    resolution: {integrity: sha512-XS0vhc9PFqH+rvGRXifanz+6KiR+m58BAdsxLvr4mTci/b43Mp1zoYFEPTauioi5nZYCk4fiPdMpD6lVZj2f+Q==}
     engines: {node: '>=18'}
     peerDependencies:
       react: 19.2.0
@@ -2362,8 +2362,20 @@ packages:
   '@react-navigation/routers@7.5.3':
     resolution: {integrity: sha512-1tJHg4KKRJuQ1/EvJxatrMef3NZXEPzwUIUZ3n1yJ2t7Q97siwRtbynRpQG9/69ebbtiZ8W3ScOZF/OmhvM4Rg==}
 
+  '@react-spectrum/button@3.18.0':
+    resolution: {integrity: sha512-SmjsXt+mLK2cf8PGstNZvLBfjqE5TjHW15yPIATI6ddqMdcC9JZ3ldnBTdFji9P/B6Rlop4ajnAdDV6bpxLtXA==}
+    peerDependencies:
+      react: 19.2.0
+      react-dom: 19.2.0
+
   '@react-spectrum/checkbox@3.11.0':
     resolution: {integrity: sha512-76jDNkUcMUJO8ukXnn2fsNwLT7z0x/T++UwFH4dNymInKCLxSve2uJrgIDvWBQBwYUwLbPZ3tS5lJEIkpCGRSg==}
+    peerDependencies:
+      react: 19.2.0
+      react-dom: 19.2.0
+
+  '@react-spectrum/dialog@3.10.0':
+    resolution: {integrity: sha512-U+0rTx1eG+BIpIb3vUAtP/n65CsyGydhtkJSNDTGUzG8yHgc7jGU/siwhY6/C8Y25wU4QggkXhIcn0y6rLvJ4g==}
     peerDependencies:
       react: 19.2.0
       react-dom: 19.2.0
@@ -2388,6 +2400,12 @@ packages:
 
   '@react-spectrum/radio@3.8.0':
     resolution: {integrity: sha512-89wHBWM974JnI8IhM5FV5ptz6SaSq//wPG1tGPxPa1uNWlBa/7u0ItGwhAPg5Oix9EH4Va/PoFjTUwXIsen/WQ==}
+    peerDependencies:
+      react: 19.2.0
+      react-dom: 19.2.0
+
+  '@react-spectrum/slider@3.9.0':
+    resolution: {integrity: sha512-FTsfWfn6+BkXi8ZDcd7mBQs/KbKYJRHV6aQ64pC4gCnMw54eFcKSuCtlCtdGw3exLPQtGHCNVWGznOjgc8PtGw==}
     peerDependencies:
       react: 19.2.0
       react-dom: 19.2.0
@@ -2554,8 +2572,28 @@ packages:
       react: 19.2.0
       react-dom: 19.2.0
 
+  '@react-stately/utils@3.12.0':
+    resolution: {integrity: sha512-7q+iHz9cENvro1dVKgdTxNh1i1mtWuLUI6UHp10TAgpxM9DyRDvmuN35zLXYCmMDgx3WLY2xkwqoez8xd+CdxQ==}
+    peerDependencies:
+      react: 19.2.0
+      react-dom: 19.2.0
+
+  '@react-types/button@3.16.0':
+    resolution: {integrity: sha512-Z5///n2Y1jtF0gokBq2Y1K1cpOwsWZ24HPeAm3eEmZrbBXMrxC2oEA5ZThsSHuIGsqiyNJiQ2scsDftmr+PkZw==}
+    peerDependencies:
+      '@react-spectrum/provider': ^3.0.0
+      react: 19.2.0
+      react-dom: 19.2.0
+
   '@react-types/checkbox@3.11.0':
     resolution: {integrity: sha512-VXacLw/pKBcxgwejr2p4uPZtG/XXBnTb6pJCdFtUL6OuFIIOFt/9eTHD+8x2HRPLxWkmo1DD3bFBOinQ7vfu2g==}
+    peerDependencies:
+      '@react-spectrum/provider': ^3.0.0
+      react: 19.2.0
+      react-dom: 19.2.0
+
+  '@react-types/dialog@3.6.0':
+    resolution: {integrity: sha512-vvxohmsTRZWE/saaJt6mMy3ONA4xbQTSk1okfMUK6OMSp/VpLBRLCz/2/myiMK3UIBCagUnrwzOwbk9whnFx0g==}
     peerDependencies:
       '@react-spectrum/provider': ^3.0.0
       react: 19.2.0
@@ -2586,6 +2624,13 @@ packages:
     resolution: {integrity: sha512-gp6xo/s2lX54AlTjOiqwDnxA7UW79BNvI9dB9pr3LZTzRKCd1ZA+ZbgKw/ReIiWuvvVw/8QFJpnqeeFyLocMcQ==}
     peerDependencies:
       react: 19.2.0
+
+  '@react-types/slider@3.9.0':
+    resolution: {integrity: sha512-gbQWB8LnucC+jhDi5Imd2ZDPbVuiHt0xzObGHWq6GTZ3slLgTvGQaHNO5h9+h7dZH0iFQOVNb6+TlyTsnjFuAw==}
+    peerDependencies:
+      '@react-spectrum/provider': ^3.0.0
+      react: 19.2.0
+      react-dom: 19.2.0
 
   '@react-types/switch@3.6.0':
     resolution: {integrity: sha512-6pjDO5a35ovAAw5xsSJoftmUP1BhFzKazB5IuVBNTbeEvJjz/LC1NGkVV3sQX68ZDSZ0UyYLS7ENIVHKU+hjzA==}
@@ -8281,15 +8326,47 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@gluestack-ui/core@4.1.0-alpha.3(@gluestack-ui/utils@4.1.0-alpha.0(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
+  '@gluestack-ui/core@5.0.13-alpha.0(@gluestack-ui/utils@5.0.6-alpha.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@gluestack-ui/utils': 4.1.0-alpha.0(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)
+      '@gluestack-ui/utils': 5.0.6-alpha.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)
+      '@react-aria/checkbox': 3.17.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/focus': 3.22.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/interactions': 3.28.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/label': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/menu': 3.22.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/overlays': 3.32.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/radio': 3.13.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/selection': 3.28.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/slider': 3.9.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/switch': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/utils': 3.34.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/visually-hidden': 3.9.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/checkbox': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/collections': 3.13.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/menu': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/overlays': 3.7.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/radio': 3.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/slider': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/toggle': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/tree': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/utils': 3.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/button': 3.16.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/checkbox': 3.11.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/menu': 3.11.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/overlays': 3.10.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/radio': 3.10.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/shared': 3.34.0(react@19.2.0)
+      '@react-types/slider': 3.9.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/switch': 3.6.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       date-fns: 4.1.0
       react: 19.2.0
       react-native: 0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0)
       react-native-safe-area-context: 5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       react-native-svg: 15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       react-native-web: 0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+    transitivePeerDependencies:
+      - '@react-spectrum/provider'
+      - react-dom
 
   '@gluestack-ui/nativewind-utils@1.0.28(nativewind@4.2.1(react-native-reanimated@4.2.1(react-native-worklets@0.7.2(@babel/core@7.29.0)(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-safe-area-context@5.6.2(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-svg@15.15.3(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18))(react@19.2.0)(tailwindcss@4.1.18)':
     dependencies:
@@ -8301,8 +8378,17 @@ snapshots:
     transitivePeerDependencies:
       - tailwindcss
 
-  '@gluestack-ui/utils@4.1.0-alpha.0(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)':
+  '@gluestack-ui/utils@5.0.6-alpha.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.18)':
     dependencies:
+      '@react-aria/dialog': 3.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/focus': 3.22.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/interactions': 3.28.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/ssr': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/utils': 3.34.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/toggle': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/checkbox': 3.11.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/dialog': 3.6.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-types/shared': 3.34.0(react@19.2.0)
       dom-helpers: 6.0.1
       react: 19.2.0
       react-aria: 3.48.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -8312,6 +8398,7 @@ snapshots:
       tailwind-variants: 0.1.20(tailwindcss@4.1.18)
       tailwindcss: 4.1.18
     transitivePeerDependencies:
+      - '@react-spectrum/provider'
       - react-dom
 
   '@gluestack/ui-next-adapter@4.0.0-alpha.0':
@@ -9199,7 +9286,7 @@ snapshots:
 
   '@react-native-aria/overlays@0.3.15(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@react-aria/interactions': 3.25.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-aria/interactions': 3.28.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@react-aria/overlays': 3.32.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@react-native-aria/utils': 0.2.12(react-dom@19.2.0(react@19.2.0))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
       '@react-stately/overlays': 3.7.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -9546,7 +9633,21 @@ snapshots:
     dependencies:
       nanoid: 3.3.11
 
+  '@react-spectrum/button@3.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@adobe/react-spectrum': 3.47.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@swc/helpers': 0.5.21
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
   '@react-spectrum/checkbox@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@adobe/react-spectrum': 3.47.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@swc/helpers': 0.5.21
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
+  '@react-spectrum/dialog@3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@adobe/react-spectrum': 3.47.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@swc/helpers': 0.5.21
@@ -9576,6 +9677,13 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
 
   '@react-spectrum/radio@3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@adobe/react-spectrum': 3.47.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@swc/helpers': 0.5.21
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
+  '@react-spectrum/slider@3.9.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@adobe/react-spectrum': 3.47.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@swc/helpers': 0.5.21
@@ -9771,6 +9879,21 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
       react-stately: 3.46.0(react@19.2.0)
 
+  '@react-stately/utils@3.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@swc/helpers': 0.5.21
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-stately: 3.46.0(react@19.2.0)
+
+  '@react-types/button@3.16.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@react-aria/button': 3.15.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/button': 3.18.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/provider': 3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
   '@react-types/checkbox@3.11.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@react-aria/checkbox': 3.17.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -9779,6 +9902,14 @@ snapshots:
       '@react-spectrum/provider': 3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@react-stately/checkbox': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@react-stately/toggle': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
+  '@react-types/dialog@3.6.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@react-aria/dialog': 3.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/dialog': 3.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/provider': 3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
@@ -9813,6 +9944,15 @@ snapshots:
   '@react-types/shared@3.34.0(react@19.2.0)':
     dependencies:
       react: 19.2.0
+
+  '@react-types/slider@3.9.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@react-aria/slider': 3.9.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/provider': 3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-spectrum/slider': 3.9.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@react-stately/slider': 3.8.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@react-types/switch@3.6.0(@react-spectrum/provider@3.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:

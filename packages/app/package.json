@@ -11,10 +11,11 @@
     "@gluestack-ui/nativewind-utils": "^1.0.28",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/native": "^7.1.6",
-    "@repo/contracts": "workspace:*",
+    "@repo/schema": "workspace:*",
     "@repo/env": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "react-native-safe-area-context": "catalog:",
+    "hono": "catalog:",
     "solito": "catalog:",
     "@repo/ui": "workspace:*",
     "zustand": "catalog:"
@@ -23,6 +24,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/react": "19.1.0",
     "boneyard-js": "^1.7.7",
+    "server": "workspace:*",
     "typescript": "^5.x"
   }
 }

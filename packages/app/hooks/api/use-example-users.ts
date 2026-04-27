@@ -3,7 +3,7 @@ import {
   ExampleUser,
   ExampleUserSchema,
   CreateUserForm,
-} from "@repo/contracts";
+} from "@repo/schema";
 import { apiClient } from "../../services/api-client";
 
 /**
@@ -15,7 +15,9 @@ export const useUsers = () => {
   return useQuery({
     queryKey: ["example-users"],
     queryFn: async (): Promise<ExampleUser[]> => {
-      const data = await apiClient<any[]>("/users");
+      const res = await apiClient.api.users.$get();
+      if (!res.ok) throw new Error("Failed to fetch users");
+      const data = await res.json();
       // Validate with Zod for runtime safety
       return data.map((item: any) => ExampleUserSchema.parse(item));
     },
@@ -27,10 +29,11 @@ export const useCreateUser = () => {
 
   return useMutation({
     mutationFn: async (newUser: CreateUserForm) => {
-      return apiClient("/users", {
-        method: "POST",
-        body: JSON.stringify(newUser),
+      const res = await apiClient.api.users.$post({
+        json: newUser,
       });
+      if (!res.ok) throw new Error("Failed to create user");
+      return res.json();
     },
     onSuccess: () => {
       // In a real app, we would invalidate the query

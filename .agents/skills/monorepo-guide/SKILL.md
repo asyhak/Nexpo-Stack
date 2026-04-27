@@ -234,6 +234,14 @@ Use the official Gluestack UI v4 CLI to add primitives to the design system.
 | Expo: "Failed to download remote update" | Disable **VPN**, ensure device/host are on same WiFi, or run `expo start -c`. |
 | Solito Navigation Error                  | Ensure you are using `solito/navigation` and not `next/navigation`.           |
 
+### VS Code TypeScript Errors (Ghost Errors)
+
+If you see persistent TypeScript errors (like `File '@repo/typescript-config/base.json' not found`) even though `pnpm check-types` passes, it's likely a caching issue with the VS Code TypeScript Language Server (especially after creating new packages or running `pnpm install`).
+
+To fix this immediately, you just need to restart the TS server. You can do this by:
+1. Opening the VS Code Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
+2. Typing "Developer: Restart TS Server" and hitting enter. (Alternatively, you can just reload the VS Code window).
+
 ---
 
 ## 🧠 Agent Mental Model

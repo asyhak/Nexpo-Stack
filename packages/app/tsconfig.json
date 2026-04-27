@@ -5,7 +5,8 @@
     "paths": {
       "@repo/app/*": ["./*"],
       "@repo/ui": ["../ui"],
-      "@repo/contracts": ["../contracts/src"]
+      "@repo/schema": ["../schema/src"],
+      "server": ["../../apps/server/src"]
     }
   },
   "exclude": ["node_modules"]

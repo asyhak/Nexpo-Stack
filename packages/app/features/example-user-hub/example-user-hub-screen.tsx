@@ -14,7 +14,7 @@ import {
 import { useUsers } from "../../hooks/api/use-example-users";
 import { useExampleUserStore } from "../../store/example-user-store";
 import { ScrollView } from "react-native";
-import { ExampleUser } from "@repo/contracts";
+import { ExampleUser } from "@repo/schema";
 
 const MOCK_USERS: Partial<ExampleUser>[] = [
   {

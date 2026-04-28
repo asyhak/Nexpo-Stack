@@ -7,7 +7,11 @@ import {
   Pressable,
   Keyboard,
 } from "react-native";
-import { SafeAreaView, Edge, useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  Edge,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { Box } from "../../ui/box";
 import { KeyboardAvoidingView } from "../../ui/keyboard-avoiding-view";
 
@@ -53,7 +57,8 @@ export const ScreenWrapper = ({
 
   const container = `flex-1 bg-background ${className || ""}`;
   const center = withScrollView && keyboardOpen ? "" : "justify-center";
-  const offset = keyboardVerticalOffset ?? (Platform.OS === "ios" ? insets.top : 0);
+  const offset =
+    keyboardVerticalOffset ?? (Platform.OS === "ios" ? insets.top : 0);
 
   const inner = withScrollView ? (
     <ScrollView
@@ -68,7 +73,9 @@ export const ScreenWrapper = ({
     </ScrollView>
   ) : (
     <Pressable className={`flex-1 ${center}`} onPress={Keyboard.dismiss}>
-      <Box className={`flex-1 ${contentContainerClassName || ""}`}>{children}</Box>
+      <Box className={`flex-1 ${contentContainerClassName || ""}`}>
+        {children}
+      </Box>
     </Pressable>
   );
 

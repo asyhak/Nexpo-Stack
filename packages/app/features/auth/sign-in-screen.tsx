@@ -106,7 +106,11 @@ export function SignInScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
+                        {String(
+                          field.state.meta.errors[0]?.message ??
+                            field.state.meta.errors[0] ??
+                            "",
+                        )}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -147,7 +151,11 @@ export function SignInScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
+                        {String(
+                          field.state.meta.errors[0]?.message ??
+                            field.state.meta.errors[0] ??
+                            "",
+                        )}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}

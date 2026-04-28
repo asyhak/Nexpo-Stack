@@ -1,12 +1,9 @@
 import { serve } from "@hono/node-server";
-import { app } from "./app";
-import { apiRoutes } from "./routes";
+import { app, type AppType } from "./app";
+
+export type { AppType };
 
 const port = 3001;
-
-// Export type for Hono RPC
-const routes = app.route("/api", apiRoutes);
-export type AppType = typeof routes;
 
 serve(
   {

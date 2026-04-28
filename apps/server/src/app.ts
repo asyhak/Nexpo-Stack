@@ -1,11 +1,11 @@
-import { auth } from "@repo/auth";
 import { env } from "@repo/env/server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { apiRoutes } from "./routes";
+import { Env } from "./types";
 
-const app = new Hono();
+const app = new Hono<Env>();
 
 app.use(logger());
 app.use(
@@ -18,7 +18,7 @@ app.use(
   }),
 );
 
-// Better Auth handler
-app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
+const routes = app.route("/api", apiRoutes);
 
 export { app };
+export type AppType = typeof routes;

@@ -4,4 +4,8 @@ import { env } from "@repo/env/web";
 
 const BASE_URL = env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
-export const apiClient = hc<AppType>(BASE_URL);
+export const apiClient = hc<AppType>(BASE_URL, {
+  init: {
+    credentials: "include",
+  },
+});

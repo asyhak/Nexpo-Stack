@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useMemo } from "react";
 import { authClient } from "../services/auth-client";
 import { AuthUser } from "@repo/schema";
+import { useQueryClient } from "@tanstack/react-query";
 
 type AuthContextType = {
   user: AuthUser | null;
@@ -24,6 +25,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const queryClient = useQueryClient();
   const { data, isPending } = authClient.useSession();
 
   const user = (data?.user as AuthUser | undefined) ?? null;
@@ -56,9 +58,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       },
       signOut: async () => {
         await authClient.signOut();
+        // Clear all queries on sign out to prevent data leaks between users
+        queryClient.clear();
       },
     }),
-    [user, session, isPending],
+    [user, session, isPending, queryClient],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

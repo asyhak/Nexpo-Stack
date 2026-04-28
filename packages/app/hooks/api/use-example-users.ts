@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ExampleUser, ExampleUserSchema, CreateUserForm } from "@repo/schema";
 import { apiClient } from "../../services/api-client";
+import { useAuth } from "../../provider/auth-provider";
 
 /**
  * EXAMPLE: TanStack Query hooks for User data
@@ -8,8 +9,11 @@ import { apiClient } from "../../services/api-client";
  */
 
 export const useUsers = () => {
+  const { isAuthenticated, user } = useAuth();
+
   return useQuery({
-    queryKey: ["example-users"],
+    // Adding user.id to queryKey ensures it re-fetches when user changes
+    queryKey: ["example-users", user?.id],
     queryFn: async (): Promise<ExampleUser[]> => {
       const res = await apiClient.api.users.$get();
       if (!res.ok) throw new Error("Failed to fetch users");
@@ -17,24 +21,7 @@ export const useUsers = () => {
       // Validate with Zod for runtime safety
       return data.map((item: any) => ExampleUserSchema.parse(item));
     },
-  });
-};
-
-export const useCreateUser = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (newUser: CreateUserForm) => {
-      const res = await apiClient.api.users.$post({
-        json: newUser,
-      });
-      if (!res.ok) throw new Error("Failed to create user");
-      return res.json();
-    },
-    onSuccess: () => {
-      // In a real app, we would invalidate the query
-      // queryClient.invalidateQueries({ queryKey: ["example-users"] });
-      console.log("User created successfully (mocked)");
-    },
+    // Only fetch if authenticated
+    enabled: isAuthenticated,
   });
 };

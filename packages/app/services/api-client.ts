@@ -1,33 +1,7 @@
-import { env } from "@repo/env";
+import { hc } from "hono/client";
+import type { AppType } from "server";
+import { env } from "@repo/env/native";
 
-/**
- * Shared API Client configuration.
- * Uses the type-safe environment variables from @repo/env.
- */
-const BASE_URL =
-  env.NEXT_PUBLIC_API_URL || "https://jsonplaceholder.typicode.com";
+const BASE_URL = env.EXPO_PUBLIC_API_URL || "http://localhost:3000";
 
-export async function apiClient<T>(
-  endpoint: string,
-  options: RequestInit = {},
-): Promise<T> {
-  const url = endpoint.startsWith("http") ? endpoint : `${BASE_URL}${endpoint}`;
-
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(
-      errorData.message ||
-        `API Error: ${response.status} ${response.statusText}`,
-    );
-  }
-
-  return response.json();
-}
+export const apiClient = hc<AppType>(BASE_URL);

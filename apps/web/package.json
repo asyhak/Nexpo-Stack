@@ -21,7 +21,8 @@
     "react-native-svg": "catalog:",
     "react-native-web": "catalog:",
     "solito": "catalog:",
-    "@repo/ui": "workspace:*"
+    "@repo/ui": "workspace:*",
+    "@repo/auth": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

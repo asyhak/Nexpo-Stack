@@ -10,6 +10,7 @@
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",
     "dev:mobile": "turbo -F mobile dev",
+    "clear:mobile": "rimraf apps/mobile/.expo apps/mobile/node_modules/.cache/metro",
     "dev:server": "turbo -F server dev",
     "db:push": "turbo -F @repo/db db:push",
     "db:generate": "turbo -F @repo/db db:generate",

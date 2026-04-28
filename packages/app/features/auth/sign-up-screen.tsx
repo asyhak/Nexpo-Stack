@@ -52,8 +52,12 @@ export function SignUpScreen() {
   });
 
   return (
-    <ScreenWrapper withScrollView={false}>
-      <Center className="flex-1 bg-background px-6">
+    <ScreenWrapper
+      withScrollView={true}
+      withKeyboardAvoidingView={true}
+      contentContainerClassName="flex-grow justify-center px-6"
+    >
+      <Center className="bg-background">
         <Box className="w-full max-w-sm">
           <VStack className="gap-2 mb-8 items-center">
             <Box className="w-16 h-16 bg-primary rounded-2xl items-center justify-center mb-4">
@@ -101,7 +105,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]?.toString()}
+                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -138,7 +142,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]?.toString()}
+                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -179,7 +183,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]?.toString()}
+                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}
@@ -230,7 +234,7 @@ export function SignUpScreen() {
                   {field.state.meta.errors.length > 0 ? (
                     <FormControlError>
                       <FormControlErrorText>
-                        {field.state.meta.errors[0]?.toString()}
+                        {String(field.state.meta.errors[0]?.message ?? field.state.meta.errors[0] ?? '')}
                       </FormControlErrorText>
                     </FormControlError>
                   ) : null}

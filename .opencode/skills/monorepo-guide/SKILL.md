@@ -6,7 +6,7 @@ description: Architecture guidance, development commands, and project configurat
 # 🛸 Monorepo Guide Skill
 
 > [!IMPORTANT]
-> **Single Source of Truth**: For project versions and setup, always refer to the [README.md](file:///c:/Users/UniPin/Downloads/gluestack-next-expo/README.md). This skill focuses on the **internal mechanics** and **AI workflow** for development.
+> **Single Source of Truth**: For project versions and setup, always refer to the [README.md](file:///d:/Personal/Nexpo-Stack/README.md). This skill focuses on the **internal mechanics** and **AI workflow** for development.
 
 This skill provides deep-dive context about the repository's internal configuration and agent-specific development strategies for maintaining a high-fidelity cross-platform application.
 
@@ -18,16 +18,17 @@ This Turborepo monorepo is built for **Shared-First** development. Most business
 | :---------------------------- | :-------------------------- | :---------------------------- |
 | `apps/mobile/`                | Expo iOS/Android App        | Expo Router, SDK 55           |
 | `apps/web/`                   | Next.js Web App             | App Router, Next.js 16.2      |
-| `apps/server/`                | Hono Backend Server         | Hono, Hono RPC                |
+| `apps/server/`                | Hono Backend Server         | Hono, Hono RPC, Better Auth   |
 | `packages/app/`               | **Shared Features & Logic** | Solito, React 19, Lucide      |
 | `packages/ui/`                | **Shared Design System**    | Gluestack v4, NativeWind v4   |
 | `packages/schema/`            | **Centralized Schemas**     | TypeScript, Zod, Shared Types |
 | `packages/db/`                | **Database Layer**          | Drizzle ORM, SQLite           |
-| `packages/auth/`              | **Authentication**          | Better Auth                   |
+| `packages/auth/`              | **Authentication Config**   | Better Auth Server & Client   |
+| `packages/env/`               | **Platform Env Management** | T3 Env Pattern (Web/Native)   |
 | `packages/app/store/`         | **Client State**            | Zustand                       |
-| `packages/app/services/`      | **API & Implementation**    | Hono RPC Client               |
+| `packages/app/services/`      | **API & Auth Clients**      | Hono hc, Better Auth Client   |
 | `packages/typescript-config/` | **Centralized TSConfig**    | Modular TypeScript Configs    |
-| `packages/app/hooks/`         | **Server State Hooks**      | TanStack Query                |
+| `packages/app/hooks/api/`     | **Server State Hooks**      | TanStack Query                |
 
 ---
 
@@ -35,18 +36,20 @@ This Turborepo monorepo is built for **Shared-First** development. Most business
 
 Always use the fastest command for the task. Most commands are run from the **root**.
 
-| Command                | Action                                                |
-| :--------------------- | :---------------------------------------------------- |
-| `pnpm dev`             | Start Web, Mobile, Server, and shared packages        |
-| `pnpm build`           | Build all workspaces for production                   |
-| `pnpm lint`            | Run ESLint across the entire monorepo                 |
-| `pnpm format`          | Run Prettier on all files                             |
-| `pnpm g screen <Name>` | **Scaffold a new screen** across Web, Mobile, and App |
-| `pnpm add-ui <Name>`   | **Add official Gluestack UI** primitive using CLI     |
-| `pnpm db:push`         | **Push DB schema** changes to SQLite                  |
-| `pnpm db:studio`       | **Open Drizzle Studio** to explore database           |
-| `pnpm parity-check`    | Verify Web and Mobile routes are in sync              |
-| `pnpm clean`           | Wipe all `node_modules` and caches                    |
+| Command              | Action                                                |
+| :------------------- | :---------------------------------------------------- |
+| `pnpm dev`           | Start Web, Mobile, Server, and shared packages        |
+| `pnpm dev:web`       | Start only the Next.js Web app                        |
+| `pnpm dev:mobile`    | Start only the Expo Mobile app                        |
+| `pnpm dev:server`    | Start only the Hono Backend server                    |
+| `pnpm build`         | Build all workspaces for production                   |
+| `pnpm g <Name>`      | **Scaffold a new screen** across Web, Mobile, and App |
+| `pnpm add-ui <Name>` | **Add official Gluestack UI** primitive using CLI     |
+| `pnpm db:push`       | **Push DB schema** changes to SQLite (Dev)            |
+| `pnpm db:migrate`    | **Run migrations** to production database             |
+| `pnpm db:studio`     | **Open Drizzle Studio** to explore database           |
+| `pnpm parity-check`  | Verify Web and Mobile routes are in sync              |
+| `pnpm clean`         | Wipe all `node_modules` and caches                    |
 
 ---
 
@@ -102,25 +105,26 @@ In a cross-platform monorepo (Expo + Next.js + Hono), TypeScript types are not e
 
 ### 4. Backend & API Logic (Hono RPC)
 
-- **End-to-End Type Safety**: We use **Hono RPC** to share types between the server and the frontend without code generation.
+- **End-to-End Type Safety**: We use **Hono RPC** via `hono/client` to share types between the server and the frontend.
 - **AppType**: The `AppType` exported from `apps/server/src/index.ts` is the source of truth for all API routes.
-- **API Client**: Always use the `apiClient` from `packages/app/services/api-client.ts`.
-  - **Usage**:
-    ```tsx
-    import { apiClient } from "../services/api-client";
-    const res = await apiClient.users.$get();
-    const data = await res.json(); // Data is fully typed!
-    ```
-- **Error Handling**: Use the Zod schemas from `@repo/schema` to handle validation errors consistently on both sides.
+- **API Client Strategy**:
+  - **Web**: Uses `api-client.web.ts` with `credentials: "include"`. This allows the browser to automatically handle session cookies.
+  - **Mobile (Native)**: Uses `api-client.ts` with **manual cookie injection**. Since Expo/Native doesn't handle cookies like a browser, we manually retrieve the cookie from `auth-client` and set it in the `fetch` headers.
+- **Usage**:
+  ```tsx
+  import { apiClient } from "../services/api-client";
+  const res = await apiClient.users.$get();
+  const data = await res.json(); // Data is fully typed!
+  ```
 
 ### 5. Database & Authentication
 
-- **Database (Drizzle ORM)**: We use **SQLite** with **Drizzle ORM** for lightweight, type-safe data persistence.
+- **Database (Drizzle ORM)**: SQLite for development, using Drizzle for type-safe queries.
   - Schema is defined in `packages/db/src/schema/`.
-  - Use `pnpm db:push` to sync schema changes during development.
-- **Authentication (Better Auth)**: A universal authentication solution integrated with Hono and Drizzle.
-  - Config resides in `packages/auth`.
-  - Client hooks are available in `@repo/auth/client`.
+- **Authentication (Better Auth)**:
+  - **Provider**: Always use the `AuthProvider` from `packages/app/provider/auth-provider.tsx`. It provides `user`, `session`, `isAuthenticated`, and auth methods.
+  - **AuthGuard**: Protect screens using the `AuthGuard` component from `packages/app/components/auth-guard.tsx`. It handles loading states and unauthorized UI automatically.
+  - **Sign Out**: Always call `signOut` from `useAuth()`, which also clears the `queryClient` to prevent data leakage.
 
 ### 6. Universal Navigation (Solito)
 
@@ -142,10 +146,16 @@ We use a dual-layer state management approach to ensure scalability and performa
   - **Best Practice**: Use `devtools` middleware and keep stores focused (e.g., `user-store.ts`).
   - **Next.js Directive**: Any component or screen consuming client-side features (`useState`, `useEffect`, custom hooks, or Zustand) MUST include the `"use client";` directive at the top of the file.
 
-### 8. Native-First Logic
+### 8. Environment Variables (@repo/env)
 
-- **Verification**: If a UI works on Mobile (Expo) using NativeWind, it will almost certainly work on Web. Always test Mobile first.
-- **Platform Branching**: Use `Platform.OS === 'web'` for minor logic differences. Use `.web.tsx` / `.native.tsx` only for platform-specific implementations.
+- **Strict Validation**: All environment variables are validated using Zod via the `@repo/env` package.
+- **Platform Separation**:
+  - `import { env } from "@repo/env/web"` for Next.js (uses `NEXT_PUBLIC_` prefix).
+  - `import { env } from "@repo/env/native"` for Expo (uses `EXPO_PUBLIC_` prefix).
+  - `import { env } from "@repo/env/server"` for the Hono server (accesses process.env).
+- **NEVER** use `process.env` directly in shared packages; always use the validated `env` object.
+
+### 9. Native-First Logic
 
 ### 9. Automated Skeleton Loading (Boneyard)
 
@@ -213,7 +223,7 @@ Follow these workflows to maintain perfect parity and follow project patterns.
 ### Adding a New Screen
 
 1.  **Define Route**: Add the route pattern to `packages/app/constants/routes.ts`.
-2.  **Scaffold**: Run `pnpm g screen MyNewFeature`.
+2.  **Scaffold**: Run `pnpm g MyNewFeature`.
 3.  **Implement**: Open `packages/app/features/my-new-feature/screen.tsx` and build the UI using the `ScreenWrapper`.
     - **IMPORTANT**: If your screen uses ANY hooks (`useState`, `useEffect`, `useRouter`, Zustand stores, etc.), you **MUST** add `"use client";` to the very top of the file.
     - **Navigation**: For primary call-to-action buttons, use Gluestack `Button` + `useRouter` instead of `Link` for better native reliability.

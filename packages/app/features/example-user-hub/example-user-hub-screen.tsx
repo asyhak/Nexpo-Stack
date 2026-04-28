@@ -15,6 +15,7 @@ import { useUsers } from "../../hooks/api/use-example-users";
 import { useExampleUserStore } from "../../store/example-user-store";
 import { ScrollView } from "react-native";
 import { ExampleUser } from "@repo/schema";
+import { AuthGuard } from "../../components/auth-guard";
 
 const MOCK_USERS: Partial<ExampleUser>[] = [
   {
@@ -61,78 +62,80 @@ export function ExampleUserHubScreen() {
 
   return (
     <ScreenWrapper>
-      <VStack className="flex-1">
-        {/* Header */}
-        <Box className="px-4 py-6 bg-card border-b border-border">
-          <Heading size="2xl" className="text-foreground">
-            User Hub
-          </Heading>
-          <Text size="sm" className="text-muted-foreground">
-            Universal Public API Demo (JSONPlaceholder)
-          </Text>
-        </Box>
+      <AuthGuard>
+        <VStack className="flex-1">
+          {/* Header */}
+          <Box className="px-4 py-6 bg-card border-b border-border">
+            <Heading size="2xl" className="text-foreground">
+              User Hub
+            </Heading>
+            <Text size="sm" className="text-muted-foreground">
+              Universal Public API Demo (JSONPlaceholder)
+            </Text>
+          </Box>
 
-        {/* Search */}
-        <ExampleUserSearch
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          placeholder="Search by name or username..."
-        />
+          {/* Search */}
+          <ExampleUserSearch
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholder="Search by name or username..."
+          />
 
-        {/* Content */}
-        <ScrollView className="flex-1">
-          {error ? (
-            <Center className="py-20">
-              <Text className="text-destructive font-bold">
-                Failed to load users
-              </Text>
-              <Text size="sm" className="text-muted-foreground">
-                Please check your connection and try again.
-              </Text>
-            </Center>
-          ) : (
-            <Skeleton
-              name="user-hub-list"
-              loading={isLoading}
-              fixture={
+          {/* Content */}
+          <ScrollView className="flex-1">
+            {error ? (
+              <Center className="py-20">
+                <Text className="text-destructive font-bold">
+                  Failed to load users
+                </Text>
+                <Text size="sm" className="text-muted-foreground">
+                  Please check your connection and try again.
+                </Text>
+              </Center>
+            ) : (
+              <Skeleton
+                name="user-hub-list"
+                loading={isLoading}
+                fixture={
+                  <VStack className="p-2 pb-10">
+                    {MOCK_USERS.map((user) => (
+                      <ExampleUserCard
+                        key={user.id}
+                        name={user.name!}
+                        email={user.email!}
+                        username={user.username!}
+                        isFavorite={false}
+                        onToggleFavorite={() => {}}
+                      />
+                    ))}
+                  </VStack>
+                }
+              >
                 <VStack className="p-2 pb-10">
-                  {MOCK_USERS.map((user) => (
-                    <ExampleUserCard
-                      key={user.id}
-                      name={user.name!}
-                      email={user.email!}
-                      username={user.username!}
-                      isFavorite={false}
-                      onToggleFavorite={() => {}}
-                    />
-                  ))}
+                  {filteredUsers?.length === 0 ? (
+                    <Center className="py-20">
+                      <Text size="lg" className="text-muted-foreground">
+                        No users found matching "{searchQuery}"
+                      </Text>
+                    </Center>
+                  ) : (
+                    filteredUsers?.map((user) => (
+                      <ExampleUserCard
+                        key={user.id}
+                        name={user.name}
+                        email={user.email}
+                        username={user.username}
+                        isFavorite={favorites.includes(user.id)}
+                        onToggleFavorite={() => toggleFavorite(user.id)}
+                      />
+                    ))
+                  )}
                 </VStack>
-              }
-            >
-              <VStack className="p-2 pb-10">
-                {filteredUsers?.length === 0 ? (
-                  <Center className="py-20">
-                    <Text size="lg" className="text-muted-foreground">
-                      No users found matching "{searchQuery}"
-                    </Text>
-                  </Center>
-                ) : (
-                  filteredUsers?.map((user) => (
-                    <ExampleUserCard
-                      key={user.id}
-                      name={user.name}
-                      email={user.email}
-                      username={user.username}
-                      isFavorite={favorites.includes(user.id)}
-                      onToggleFavorite={() => toggleFavorite(user.id)}
-                    />
-                  ))
-                )}
-              </VStack>
-            </Skeleton>
-          )}
-        </ScrollView>
-      </VStack>
+              </Skeleton>
+            )}
+          </ScrollView>
+        </VStack>
+      </AuthGuard>
     </ScreenWrapper>
   );
 }

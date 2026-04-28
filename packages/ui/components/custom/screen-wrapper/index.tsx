@@ -34,54 +34,45 @@ export const ScreenWrapper = ({
   ...props
 }: IScreenWrapperProps) => {
   const insets = useSafeAreaInsets();
-
-  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   useEffect(() => {
-    const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
-    const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
-
-    const showSubscription = Keyboard.addListener(showEvent, () => setIsKeyboardVisible(true));
-    const hideSubscription = Keyboard.addListener(hideEvent, () => setIsKeyboardVisible(false));
-
+    const onShow = Keyboard.addListener(
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
+      () => setKeyboardOpen(true),
+    );
+    const onHide = Keyboard.addListener(
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
+      () => setKeyboardOpen(false),
+    );
     return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
+      onShow.remove();
+      onHide.remove();
     };
   }, []);
 
-  const containerClass = `flex-1 bg-background ${className || ""}`;
+  const container = `flex-1 bg-background ${className || ""}`;
+  const center = withScrollView && keyboardOpen ? "" : "justify-center";
+  const offset = keyboardVerticalOffset ?? (Platform.OS === "ios" ? insets.top : 0);
 
-  const centerClass = withScrollView && isKeyboardVisible ? "" : "justify-center";
-
-  let content = withScrollView ? (
+  const inner = withScrollView ? (
     <ScrollView
       className="flex-1"
       contentContainerClassName={`flex-grow ${contentContainerClassName || ""}`}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
     >
-      <Pressable
-        className={`flex-1 ${centerClass}`}
-        onPress={Keyboard.dismiss}
-      >
+      <Pressable className={`flex-1 ${center}`} onPress={Keyboard.dismiss}>
         {children}
       </Pressable>
     </ScrollView>
   ) : (
-    <Pressable
-      className={`flex-1 ${centerClass}`}
-      onPress={Keyboard.dismiss}
-    >
-      <Box className={`flex-1 ${contentContainerClassName || ""}`}>
-        {children}
-      </Box>
+    <Pressable className={`flex-1 ${center}`} onPress={Keyboard.dismiss}>
+      <Box className={`flex-1 ${contentContainerClassName || ""}`}>{children}</Box>
     </Pressable>
   );
 
-  const offset = keyboardVerticalOffset ?? (Platform.OS === "ios" ? insets.top : 0);
-
-  const wrappedContent =
+  const content =
     withKeyboardAvoidingView && Platform.OS === "ios" ? (
       <KeyboardAvoidingView
         behavior="padding"
@@ -89,15 +80,15 @@ export const ScreenWrapper = ({
         keyboardVerticalOffset={offset}
         {...keyboardAvoidingViewProps}
       >
-        {content}
+        {inner}
       </KeyboardAvoidingView>
     ) : (
-      content
+      inner
     );
 
   return (
-    <SafeAreaView className={containerClass} edges={edges} {...props}>
-      {wrappedContent}
+    <SafeAreaView className={container} edges={edges} {...props}>
+      {content}
     </SafeAreaView>
   );
 };

@@ -15,8 +15,8 @@ export const ScreenWrapper = ({
   contentContainerClassName,
 }: IScreenWrapperProps) => {
   return (
-    <Box className={`flex-1 bg-background ${className || ""}`}>
-      <Box className={`min-h-screen ${contentContainerClassName || ""}`}>
+    <Box className={`flex flex-1 flex-col bg-background ${className || ""}`}>
+      <Box className={`min-h-screen flex flex-col py-4 md:py-8 ${contentContainerClassName || ""}`}>
         {children}
       </Box>
     </Box>

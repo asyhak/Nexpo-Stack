@@ -5,6 +5,7 @@ import { env } from "@repo/env/server";
 import { APP_SCHEME } from "@repo/env/constants";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { openAPI } from "better-auth/plugins";
 
 export function createAuth() {
   const db = createDb();
@@ -29,6 +30,13 @@ export function createAuth() {
     emailAndPassword: {
       enabled: true,
     },
+    // account: {
+    //   accountLinking: {
+    //     enabled: true, // Enable account linking (default: true)
+    //     trustedProviders: ["google", "magic-link"], // Providers that can auto-link
+    //     allowDifferentEmails: false, // Only link if emails match (recommended)
+    //   },
+    // },
     secret: env.BETTER_AUTH_SECRET,
     baseURL: env.BETTER_AUTH_URL,
     advanced: {
@@ -38,7 +46,7 @@ export function createAuth() {
         httpOnly: true,
       },
     },
-    plugins: [expo()],
+    plugins: [expo(), openAPI()],
   });
 }
 

@@ -178,10 +178,10 @@ To provide a premium loading experience, we use `boneyard-js` to auto-generate p
 
 - **Centralized Wrapper**: Always import icons from `@repo/ui` (or the `ui` alias) instead of `lucide-react` or `lucide-react-native` directly.
 - **Universal API**: The `@repo/ui` package provides a unified export of Lucide icons under the `LucideIcons` namespace.
-- **Usage**:
+- **Usage Example**:
   ```tsx
-  import { Icon, LucideIcons } from "@repo/ui";
-  <Icon as={LucideIcons.Home} size="md" />;
+  import { LucideIcons } from "@repo/ui";
+  <LucideIcons.EyeOff className="w-5 h-5" />;
   ```
 
 ### 12. Next.js Directive ("use client")
